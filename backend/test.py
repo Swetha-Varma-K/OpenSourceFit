@@ -14,8 +14,9 @@ beginner_labels = [
     "good first issue",
     "help wanted"
 ]
+
 found_issues = False
-count = 0
+recommended_count = 0
 
 for issue in issues_data:
     if "pull_request" in issue:
@@ -23,12 +24,16 @@ for issue in issues_data:
 
     reasons = []
     is_beginner = False
+
     for label in issue["labels"]:
         if label["name"] in beginner_labels:
             is_beginner = True
             reasons.append(label["name"])
+
     if is_beginner:
         found_issues = True
+        recommended_count = recommended_count + 1
+
         print("Issue:")
         print(issue["title"])
 
@@ -42,13 +47,15 @@ for issue in issues_data:
 
         print("Link:")
         print(issue["html_url"])
-    count = count + 1
-    if count == 5:
+
+    if recommended_count == 5:
         break
 
 if not found_issues:
     print("No beginner-friendly issues found.")
     print("Try another repository.")
+
+print("Recommendations Found:", recommended_count)
 
 print("Repository:", data["name"])
 print("Language:", data["language"])
