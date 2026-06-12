@@ -2,16 +2,29 @@ import requests
 
 repo = input("Enter repository (owner/repo): ")
 skill = input("Enter your skill: ")
-skills_list = skill.lower().split(",")
+skills_list = [s.strip().lower() for s in skill.split(",")]
 url = f"https://api.github.com/repos/{repo}"
 
 response = requests.get(url)
 
 data = response.json()
-if skill.lower() == str(data["language"]).lower():
-    match_score = 100
-else:
-    match_score = 0
+repo_language = str(data["language"]).lower()
+
+repo_text = (
+    str(data["name"]) + " " +
+    str(data["description"]) + " " +
+    str(data["language"])
+).lower()
+
+matched_skill_names = []
+matched_skills = 0
+
+for skill in skills_list:
+    if skill in repo_text:
+        matched_skills += 1
+        matched_skill_names.append(skill)
+
+match_score = int((matched_skills / len(skills_list)) * 100)
 issues_url = f"https://api.github.com/repos/{repo}/issues?per_page=100"
 issues_response = requests.get(issues_url)
 issues_data = issues_response.json()
@@ -60,6 +73,12 @@ if not found_issues:
     print("Try another repository.")
 
 print("Recommendations Found:", recommended_count)
+print("Matched Skills:")
+if matched_skill_names:
+    for skill in matched_skill_names:
+        print("✓", skill)
+else:
+    print("No matching skills found")
 print("Match Score:", match_score, "%")
 print("Repository:", data["name"])
 print("Language:", data["language"])
