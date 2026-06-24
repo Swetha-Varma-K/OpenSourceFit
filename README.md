@@ -6,8 +6,6 @@ OpenSourceFit helps developers discover suitable open-source contribution opport
 
 https://swethavarma05-opensourcefit-flask.hf.space
 
----
-
 ## 📖 Overview
 
 Contributing to open-source projects can be overwhelming for beginners. Thousands of repositories exist on GitHub, but identifying projects that match a contributor's skills and experience level is often challenging.
@@ -46,8 +44,6 @@ Identifies contribution opportunities by filtering issues tagged with labels suc
 
 Provides a simple and intuitive web interface where users can analyze repositories and discover suitable open-source contribution opportunities.
 
----
-
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -76,7 +72,6 @@ Provides a simple and intuitive web interface where users can analyze repositori
 - Docker
 - Hugging Face Spaces
 
----
 
 ## 🏗️ Project Architecture
 
@@ -104,8 +99,6 @@ Recommended Beginner-Friendly Issues
 5. Beginner-friendly issues are collected.
 6. Semantic similarity is computed using Sentence Transformers.
 7. Matching issues are ranked and recommended.
-
----
 
 ## 📸 Screenshots
 
@@ -141,8 +134,6 @@ Open:
 http://localhost:5000
 ```
 
----
-
 ## 📈 Future Improvements
 
 - GitHub OAuth Login
@@ -152,13 +143,9 @@ http://localhost:5000
 - Advanced Skill Matching
 - Repository Ranking System
 
----
-
 ## 👩‍💻 Author
 
 Swetha Varma K
-
----
 
 ## ⭐ Support
 
