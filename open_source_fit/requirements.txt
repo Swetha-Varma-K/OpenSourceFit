@@ -1,5 +1,4 @@
-flask
 requests
 sentence-transformers
 torch
-gunicorn
+gradio
