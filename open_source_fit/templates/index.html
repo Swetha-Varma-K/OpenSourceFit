@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenSourceFit</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>OpenSourceFit</h1>
+
+    <form method="POST" onsubmit="showLoading()">
+        <label>Repository:</label>
+        <input type="text" name="repo" placeholder="owner/repo">
+
+        <br><br>
+
+        <label>Skills:</label>
+        <input type="text" name="skills" placeholder="Python, Flask">
+
+        <br><br>
+
+        <button type="submit" class="button">
+            Analyze
+        </button>
+
+        <p id="loading" style="display:none;">
+        🔍 Analyzing Repository...
+        </p>
+    </form>
+
+{% if result %}
+
+<hr>
+
+{% if result.error %}
+
+<div class="error-card">
+    {{ result.error }}
+</div>
+
+{% else %}
+
+<div class="analysis-card">
+<h2>Repository Analysis</h2>
+
+<div class="stats-grid">
+
+    <div class="stat-box">
+        <h3>Difficulty</h3>
+        <p>{{ result.difficulty }}</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Beginner Score</h3>
+        <p>{{ result.beginner_score }}/100</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Language</h3>
+        <p>{{ result.language }}</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Stars</h3>
+        <p>{{ result.stars }}</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Open Issues</h3>
+        <p>{{ result.open_issues }}</p>
+    </div>
+
+</div>
+
+<p>
+<b>Description:</b>
+{{ result.description }}
+</p>
+</div>
+<h2>Top Matches</h2>
+
+{% for rec in result.recommendations %}
+
+<div class="match-card">
+
+    <div class="match-score">
+        {{ rec.match }}% Match
+    </div>
+
+    <h3>{{ rec.title }}</h3>
+
+    <a href="{{ rec.link }}" target="_blank">
+        View on GitHub →
+    </a>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endif %}
+
+<script>
+function showLoading() {
+    document.getElementById("loading").style.display = "block";
+}
+</script>
+
+</body>
+</html>

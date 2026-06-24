@@ -11,6 +11,11 @@ def analyze_repository(repo, skill):
 
     response = requests.get(url)
 
+    if response.status_code != 200:
+        return {
+        "error": "Repository not found"
+      }
+
     data = response.json()
 
     difficulty = "Beginner"
@@ -87,7 +92,11 @@ def analyze_repository(repo, skill):
 
     beginner_labels = [
         "good first issue",
-        "help wanted"
+    "help wanted",
+    "good first contribution",
+    "beginner",
+    "beginner friendly",
+    "new contributor"
     ]
     issue_texts = []
     issue_titles = []
