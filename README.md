@@ -75,20 +75,16 @@ Provides a simple and intuitive web interface where users can analyze repositori
 
 ## 🏗️ Project Architecture
 
-User Input (Repository + Skills)
-        ↓
-GitHub API
-        ↓
-Repository Analysis
-        ↓
-Issue Collection
-        ↓
-Sentence Transformer Embeddings
-        ↓
-Semantic Similarity Matching
-        ↓
-Recommended Beginner-Friendly Issues
-
+```mermaid
+flowchart TD
+    A[User Input<br/>Repository + Skills]
+    --> B[GitHub API]
+    --> C[Repository Analysis]
+    --> D[Issue Collection]
+    --> E[Sentence Transformer Embeddings]
+    --> F[Semantic Similarity Matching]
+    --> G[Recommended Beginner-Friendly Issues]
+```
 
 ## ⚙️ How It Works
 
